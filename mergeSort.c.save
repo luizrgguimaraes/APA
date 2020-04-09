@@ -1,0 +1,55 @@
+#include <stdio.h>
+#define TAMANHO 16
+
+void printVetor(int v[],int inicio,int fim,int nivel,char* function){
+	printf("%s",function);
+	int i;
+	for(i=0;i<=nivel;i++){
+		printf("    ");
+	}
+	for(i=inicio;i<=fim;i++){
+		printf("[%d] ",v[i]);
+	}
+	printf("\n");
+}
+
+
+int* merge(int v[],int inicio,int meio,int fim,int nivel){
+	printVetor(v,inicio,fim,nivel,"merge")
+	int  u[10];
+	int a = inicio;
+	int b = meio+1;
+	int i;
+	for(i=inicio;a<=meio && b<=fim;i++){
+		if(v[a]<=v[b]){
+			u[i]=v[a];a++;
+		}else{
+			u[i]=v[b];b++;
+		}
+	}
+	while(a<=meio)
+		u[i]=v[a];i++;a++;
+//	while(b<=fim)
+//		u[i]=v[b];i++;b++;
+//	for(i=inicio;i<=fim;i++)
+//		v[i]=u[i];
+	return v;
+}
+
+int* mergeSort(int v[], int inicio,int fim,int nivel){
+	printVetor(v,inicio,fim,nivel,"sort ");
+	int meio=(inicio+fim)/2;
+	if(inicio<fim){
+		mergeSort(v,inicio,meio,nivel+1);
+		mergeSort(v,meio+1,fim,nivel+1);
+		merge(v,inicio,meio,fim,nivel+1);
+	}else{
+		return v;
+	}} 
+
+
+void main(){
+	int v[16]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+	mergeSort(v,0,TAMANHO-1,1);
+	printVetor(v,0,TAMANHO-1,0,"main");
+}
