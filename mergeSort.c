@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define TAMANHO 9
+#define TAMANHO 15
 
 void printVetor(int v[],int inicio,int fim,int nivel,char* function,int flagprint){
 	if(flagprint<1)return;
